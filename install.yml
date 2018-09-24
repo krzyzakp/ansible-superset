@@ -1,0 +1,29 @@
+---
+
+- name: Install venv using pip
+  pip:
+    name: virtualenv
+
+- name: Create superset group
+  group:
+    name: "{{ superset_group }}"
+
+- name: Create superset user
+  user:
+    name: "{{ superset_user }}"
+    group: "{{ superset_group }}"
+    home: "{{ superset_venv_path }}"  #TODO set to: "/home/{{ superset_user }}"
+
+- name: Install superset dependencies:
+  pip:
+    name: "{{ item }}"
+    virtualenv: "{{ superset_venv_path }}"
+  loop: "{{ superset_dependencies | flatten(levels=1) }}"
+
+- name: Install superset in venv
+  pip:
+    name: superset
+    virtualenv: "{{ superset_venv_path }}"
+
+
+
