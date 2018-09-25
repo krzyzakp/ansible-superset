@@ -1,0 +1,6 @@
+#{{ ansible_managed }}
+from superset_config import *
+
+{% for key, item in superset_config.iteritems() %}
+{{ key }} = {{ value }}
+{% endfor %}

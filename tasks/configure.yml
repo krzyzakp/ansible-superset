@@ -1,0 +1,23 @@
+---
+
+- name: Create admin user for Superset, initialize database and create default roles/permissions
+  command: "{{ superset_venv_path }}/bin/fabmanager create-admin --app superset --username {{ superset_admin_username }} --firstname {{ superset_admin_firstname }} --lastname {{ superset_admin_lastname }} --email {{ superset_admin_email }} --password {{ superset_admin_password }}; {{ superset_venv_path }}/bin/superset db upgrade; {{ superset_venv_path }}/bin/superset init"
+  args:
+    creates: "{{ superset_homedir }}/.superset/superset.db"
+  become_user: "{{ superset_user }}"
+
+- name: Create superset config file
+  template:
+    src: superset_config.j2
+    dest: "{{ superset_home }}/superset_config.py"
+    mode: 0644
+    owner: "{{ superset_user }}"
+    group: "{{ superset_group }}"
+  when: "{{ superset_config }}"
+
+- name: Create Gunicorn log file
+  file:
+    state: file
+    owner: "{{ superset_user }}"
+    group: "{{ superset_group }}"
+    mode: 0644

@@ -12,7 +12,7 @@
   user:
     name: "{{ superset_user }}"
     group: "{{ superset_group }}"
-    home: "{{ superset_venv_path }}"  #TODO set to: "/home/{{ superset_user }}"
+    home: "{{ superset_homedir }}"
 
 - name: Install superset dependencies:
   pip:
@@ -24,6 +24,4 @@
   pip:
     name: superset
     virtualenv: "{{ superset_venv_path }}"
-
-
 
