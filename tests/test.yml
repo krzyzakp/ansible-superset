@@ -4,4 +4,4 @@
   remote_user: root
 
   roles:
-    - ansible-superset
+    - krzyzakp.superset

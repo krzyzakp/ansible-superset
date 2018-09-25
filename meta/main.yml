@@ -16,10 +16,10 @@ galaxy_info:
         - jessie
         - stretch
         - buster
-  
+
   galaxy_tags:
     - superset
     - virtualenv
 
-  dependencies: 
+  dependencies:
     - geerlingguy.supervisor

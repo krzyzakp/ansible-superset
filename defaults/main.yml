@@ -9,6 +9,20 @@ superset_group: "{{ superset_user }}"
 # Home dir for superset user
 superset_homedir: "/home/{{ superset_user }}"
 
+# List of packages, needed by superset
+superset_dependencies:
+  - build-essential
+  - python-dev
+  - libssl-dev
+  - libffi-dev
+  - python-pip
+  - libsasl2-dev
+  - libldap2-dev
+  - sudo
+
+# List of pip packages, on which superset depends
+superset_pip_dependencies: []
+
 # Path to virtualenv used by superset
 superset_venv_path: "{{ superset_homedir }}/venv"
 
@@ -25,7 +39,7 @@ superset_admin_lastname: Admin
 superset_admin_email: admin@domain.com
 
 # Superset admin password
-superset_admin_password: your_secret_p4$$w0rd
+superset_admin_password: your_secret_p477w0rd
 
 # Superset config dict
 superset_config: {}
