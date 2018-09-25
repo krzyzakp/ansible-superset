@@ -14,7 +14,7 @@
     group: "{{ superset_group }}"
     home: "{{ superset_homedir }}"
 
-- name: Install superset dependencies:
+- name: Install superset dependencies
   pip:
     name: "{{ item }}"
     virtualenv: "{{ superset_venv_path }}"
