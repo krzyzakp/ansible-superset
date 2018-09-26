@@ -23,6 +23,7 @@ superset_dependencies:
 # List of pip packages, on which superset depends
 superset_pip_dependencies: 
     markdown: 2.6.11 #Newer markdown versions doesn't work
+    click: "6.7" #When not explicitly installed, we have impotent test failure
 
 # Path to virtualenv used by superset
 superset_venv_path: "{{ superset_homedir }}/venv"
@@ -50,12 +51,12 @@ superset_config: {}
 supervisor_programs:
   - name: supervisor
     state: present
-    command: /home/superset/venv/bin/gunicorn -w 6 -k gevent --timeout 300 -b 127.0.0.1:6666 --limit-request-line 0 --limit-request-field_size 0 superset:app --error-logfile /var/log/gunicorn.log
+    command: "{{ superset_venv_path }}/bin/gunicorn -w 6 -k gevent --timeout 300 -b 127.0.0.1:6666 --limit-request-line 0 --limit-request-field_size 0 superset:app --error-logfile /var/log/gunicorn.log"
     configuration: |
-      environment=PATH="/home/superset/venv/bin:%(ENV_PATH)s",SUPERSET_CONFIG_PATH=/home/superset/superset_config.py
+      environment=PATH="\"{{ superset_venv_path }}/venv/bin:%(ENV_PATH)s\",SUPERSET_CONFIG_PATH={{ superset_homedir }}/superset_config.py"
       process_name=superset
-      user=superset
-      group=superset
+      user="{{ superset_user }}"
+      group="{{ superset_group }}"
       numprocs=1
       autostart=true
       autorestart=true

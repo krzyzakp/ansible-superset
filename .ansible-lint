@@ -1,0 +1,10 @@
+---
+
+parseable: True
+quiet: True
+skip_list:
+  - deprecated
+  - 406GAL
+  - 204GAL
+use_default_rules: True
+verbosity: 1

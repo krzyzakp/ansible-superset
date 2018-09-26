@@ -17,13 +17,14 @@
 - name: Install needed packages
   apt:
     name: "{{ item }}"
-  loop: "{{ superset_dependencies }}"
+  loop: "{{ superset_dependencies | flatten(levels=1) }}"
 
 - name: Install PIP superset dependencies
   pip:
-    name: "{{ item }}"
+    name: "{{ item.key }}"
     virtualenv: "{{ superset_venv_path }}"
-  loop: "{{ superset_pip_dependencies | flatten(levels=1) }}"
+    version: "{{ item.value }}"
+  loop: "{{ superset_pip_dependencies | dict2items }}"
 
 - name: Install superset in venv
   pip:

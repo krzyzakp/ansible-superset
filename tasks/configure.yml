@@ -13,11 +13,17 @@
     mode: 0644
     owner: "{{ superset_user }}"
     group: "{{ superset_group }}"
-  when: "{{ superset_config }}"
+  when: superset_config
+
+- name: Register path for gunicorn
+  stat:
+    path: /var/log/gunicorn.log
+  register: p
+  check_mode: true
 
 - name: Create Gunicorn log file
   file:
-    state: touch
+    state: "{{ 'file' if p.stat.exists else 'touch' }}"
     path: /var/log/gunicorn.log
     owner: "{{ superset_user }}"
     group: "{{ superset_group }}"

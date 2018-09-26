@@ -4,6 +4,8 @@ set -e
 
 printf "[defaults]\nroles_path=/etc/ansible/roles\n" > /ansible/ansible.cfg
 
+ansible-galaxy install geerlingguy.supervisor
+
 if [ ! -f /etc/ansible/lint.zip ]; then
   wget https://github.com/ansible/galaxy-lint-rules/archive/master.zip -O \
   /etc/ansible/lint.zip
