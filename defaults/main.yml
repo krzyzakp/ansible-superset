@@ -21,7 +21,8 @@ superset_dependencies:
   - sudo
 
 # List of pip packages, on which superset depends
-superset_pip_dependencies: []
+superset_pip_dependencies: 
+    markdown: 2.6.11 #Newer markdown versions doesn't work
 
 # Path to virtualenv used by superset
 superset_venv_path: "{{ superset_homedir }}/venv"
