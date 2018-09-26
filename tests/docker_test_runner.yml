@@ -15,13 +15,13 @@ docker_image_build_args:
 docker_image_path: "__PATH__/tests/docker"
 
 docker_images:
-#  - CentOS_7
-#  - Debian_9_4
-#  - Debian_10
+  - CentOS_7
+  - Debian_9_4
+  - Debian_10
   - Ubuntu_16_04
-#  - Ubuntu_17_10
-#  - Ubuntu_18_04
-#  - Ubuntu_18_10
+  - Ubuntu_17_10
+  - Ubuntu_18_04
+  - Ubuntu_18_10
 
 docker_container_volumes:
   "__PATH__":
