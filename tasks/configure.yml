@@ -5,6 +5,9 @@
   args:
     creates: "{{ superset_homedir }}/.superset/superset.db"
   become_user: "{{ superset_user }}"
+  become: yes
+  tags:
+    - skip_ansible_lint
 
 - name: Create superset config file
   template:
