@@ -6,5 +6,6 @@ skip_list:
   - deprecated
   - 406GAL
   - 204GAL
+  - E204
 use_default_rules: True
 verbosity: 1
