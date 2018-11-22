@@ -8,6 +8,9 @@ ARG TRAVIS=${TRAVIS}
 ENV ansible_role=${ansible_role}
 ENV travis=${TRAVIS}
 
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \

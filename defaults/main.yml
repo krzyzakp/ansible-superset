@@ -22,7 +22,7 @@ superset_dependencies:
 
 # List of pip packages, on which superset depends
 superset_pip_dependencies: 
-    markdown: 2.6.11 #Newer markdown versions doesn't work
+    markdown: 2.6.11 #Newer version is not working.
     click: "6.7" #When not explicitly installed, we have impotent test failure
 
 # Path to virtualenv used by superset
